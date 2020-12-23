@@ -3,27 +3,40 @@ import React, { Component } from "react";
 class Counter extends Component {
   render() {
     return (
-      <React.Fragment>
-        <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <button
-          className="btn btn-primary my-4"
-          onClick={() => this.props.onIncrement(this.props.counter)}
-        >
-          Increment
-        </button>
+      <div className="row">
+        <div className="col-1">
+          <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
+        </div>
 
-        <button
-          className="btn btn-danger ml-5"
-          onClick={() => this.props.onDelete(this.props.counter.id)}
-        >
-          Delete
-        </button>
-      </React.Fragment>
+        <div className="col mb-4">
+          <button
+            className="btn btn-secondary "
+            onClick={() => this.props.onIncrement(this.props.counter)}
+          >
+            +
+          </button>
+
+          <button
+            className="btn btn-secondary  ml-4"
+            onClick={() => this.props.onDecrement(this.props.counter)}
+            disabled={!this.props.counter.value}
+          >
+            -
+          </button>
+
+          <button
+            className="btn btn-danger ml-4"
+            onClick={() => this.props.onDelete(this.props.counter.id)}
+          >
+            X
+          </button>
+        </div>
+      </div>
     );
   }
 
   getBadgeClasses() {
-    let classes = "badge mx-4 p-2 badge-";
+    let classes = "badge  mx-4 p-2 badge-";
     classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes;
   }
